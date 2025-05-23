@@ -1,0 +1,89 @@
+{
+  "name": "create-tsdown",
+  "version": "0.0.1",
+  "packageManager": "pnpm@10.11.0",
+  "description": "The Elegant Bundler for Libraries",
+  "type": "module",
+  "license": "MIT",
+  "homepage": "https://github.com/rolldown/tsdown#readme",
+  "bugs": {
+    "url": "https://github.com/rolldown/tsdown/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rolldown/tsdown.git"
+  },
+  "author": "三咲智子 Kevin Deng <sxzz@sxzz.moe>",
+  "funding": "https://github.com/sponsors/sxzz",
+  "files": [
+    "dist",
+    "esm-shims.js"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js",
+    "./run": "./dist/run.js",
+    "./package.json": "./package.json"
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist/*",
+        "./*"
+      ]
+    }
+  },
+  "bin": {
+    "create-tsdown": "./dist/run.js"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "lint": "eslint --cache --max-warnings 0 .",
+    "lint:fix": "pnpm run lint --fix",
+    "build": "tsdown",
+    "dev": "node --import @oxc-node/core/register ./src/run.ts",
+    "test": "vitest",
+    "typecheck": "tsc --noEmit",
+    "format": "prettier --cache --write .",
+    "release": "bumpp && pnpm publish",
+    "prepublishOnly": "pnpm run build"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "peerDependenciesMeta": {
+    "typescript": {
+      "optional": true
+    }
+  },
+  "dependencies": {
+    "ansis": "catalog:prod",
+    "cac": "catalog:prod",
+    "debug": "catalog:prod",
+    "diff": "catalog:prod",
+    "rolldown": "catalog:prod"
+  },
+  "devDependencies": {
+    "@oxc-node/core": "catalog:dev",
+    "@sxzz/eslint-config": "catalog:dev",
+    "@sxzz/prettier-config": "catalog:dev",
+    "@sxzz/test-utils": "catalog:dev",
+    "@types/debug": "catalog:dev",
+    "@types/node": "catalog:dev",
+    "bumpp": "catalog:dev",
+    "eslint": "catalog:dev",
+    "prettier": "catalog:dev",
+    "tsdown": "catalog:dev",
+    "typescript": "catalog:dev",
+    "unplugin-unused": "catalog:dev",
+    "vitest": "catalog:dev"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "prettier": "@sxzz/prettier-config"
+}
