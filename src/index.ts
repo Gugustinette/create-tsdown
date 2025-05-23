@@ -14,10 +14,7 @@ export function create(options: ResolvedOptions): void {
   downloadTemplate(
     `gh:gugustinette/create-tsdown/templates/${options.template}`,
     {
-      dir:
-        options.template === 'default'
-          ? './my-package'
-          : `my-${options.template}-package`,
+      dir: options.name,
     },
   )
 
