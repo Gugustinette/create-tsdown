@@ -1,3 +1,4 @@
+import { downloadTemplate } from 'giget'
 import { logger } from './utils/logger'
 import type { ResolvedOptions } from './options'
 
@@ -9,5 +10,16 @@ export function create(options: ResolvedOptions): void {
     logger.setSilent(options.silent)
   }
 
-  logger.info(options)
+  // Clone the template from the repository
+  downloadTemplate(
+    `gh:gugustinette/create-tsdown/templates/${options.template}`,
+    {
+      dir:
+        options.template === 'default'
+          ? './my-package'
+          : `my-${options.template}-package`,
+    },
+  )
+
+  logger.success('Project created successfully!')
 }

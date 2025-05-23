@@ -23,9 +23,9 @@ cli
       default: 'default',
     },
   )
-  .option('--debug [feat]', 'Show debug logs')
+  .option('--debug', 'Show debug logs')
   .option('--silent', 'Suppress non-error logs')
-  .action(async (options: Options) => {
+  .action(async (input: string[], options: Options) => {
     logger.setSilent(!!options.silent)
     logger.info(
       `create-tsdown ${dim`v${version}`} powered by rolldown ${dim`v${rolldownVersion}`}`,
@@ -36,6 +36,7 @@ cli
 
     // Run the command
     const { create } = await import('./index')
+    if (input.length > 0) options.name = input[0]
     create(resolvedOptions)
   })
 

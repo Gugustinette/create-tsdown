@@ -19,6 +19,7 @@ catalogs:
     cac: ^6.7.14
     debug: ^4.4.1
     diff: ^8.0.1
+    giget: ^2.0.0
     rolldown: 1.0.0-beta.9-commit.51df2b7
 
 ignoredBuiltDependencies:

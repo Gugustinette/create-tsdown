@@ -65,6 +65,7 @@
     "cac": "catalog:prod",
     "debug": "catalog:prod",
     "diff": "catalog:prod",
+    "giget": "catalog:prod",
     "rolldown": "catalog:prod"
   },
   "devDependencies": {
