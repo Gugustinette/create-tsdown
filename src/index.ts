@@ -1,14 +1,13 @@
-import { resolveOptions, type Options } from './options'
 import { logger } from './utils/logger'
+import type { ResolvedOptions } from './options'
 
 /**
  * Create a tsdown project.
  */
-export async function create(userOptions: Options = {}): Promise<void> {
-  if (typeof userOptions.silent === 'boolean') {
-    logger.setSilent(userOptions.silent)
+export function create(options: ResolvedOptions): void {
+  if (typeof options.silent === 'boolean') {
+    logger.setSilent(options.silent)
   }
 
-  const options = await resolveOptions(userOptions)
   logger.info(options)
 }

@@ -4,11 +4,11 @@ import { cac } from 'cac'
 import debug from 'debug'
 import { VERSION as rolldownVersion } from 'rolldown'
 import { version } from '../package.json'
+import { resolveOptions, type Options } from './options'
 import { resolveComma, toArray } from './utils/general'
 import { logger } from './utils/logger'
-import type { Options } from './options'
 
-const cli = cac('tsdown')
+const cli = cac('create-tsdown')
 cli.help().version(version)
 
 cli
@@ -25,13 +25,18 @@ cli
   )
   .option('--debug [feat]', 'Show debug logs')
   .option('--silent', 'Suppress non-error logs')
-  .action(async (input: string[], flags: Options) => {
-    logger.setSilent(!!flags.silent)
+  .action(async (options: Options) => {
+    logger.setSilent(!!options.silent)
     logger.info(
       `create-tsdown ${dim`v${version}`} powered by rolldown ${dim`v${rolldownVersion}`}`,
     )
+
+    // Resolve the user options
+    const resolvedOptions = resolveOptions(options)
+
+    // Run the command
     const { create } = await import('./index')
-    await create(flags)
+    create(resolvedOptions)
   })
 
 cli
