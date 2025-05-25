@@ -1,4 +1,4 @@
-import { select, text } from '@clack/prompts'
+import { cancel, isCancel, select, text } from '@clack/prompts'
 import Debug from 'debug'
 import type { Options, ResolvedOptions } from './types'
 
@@ -27,6 +27,12 @@ export async function resolveOptions(
       initialValue: './my-package',
     })) as string
   }
+  // Handle cancel
+  if (isCancel(resolvedName)) {
+    cancel('Operation cancelled.')
+    // eslint-disable-next-line node/prefer-global/process
+    process.exit(0)
+  }
 
   // Resolve the template
   let resolvedTemplate: ResolvedOptions['template']
@@ -47,6 +53,12 @@ export async function resolveOptions(
       ],
       initialValue: 'default',
     })) as ResolvedOptions['template']
+  }
+  // Handle cancel
+  if (isCancel(resolvedTemplate)) {
+    cancel('Operation cancelled.')
+    // eslint-disable-next-line node/prefer-global/process
+    process.exit(0)
   }
 
   const resolvedOptions: ResolvedOptions = {

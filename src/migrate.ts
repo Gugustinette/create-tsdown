@@ -1,8 +1,6 @@
 import { existsSync } from 'node:fs'
 import { readFile, unlink, writeFile } from 'node:fs/promises'
 import process from 'node:process'
-import { createInterface } from 'node:readline/promises'
-import { bold, green, underline } from 'ansis'
 import { version } from '../package.json'
 import { logger } from './utils/logger'
 
@@ -15,42 +13,12 @@ export async function migrate({
 }): Promise<void> {
   if (dryRun) {
     logger.info('Dry run enabled. No changes were made.')
-  } else {
-    const rl = createInterface({
-      input: process.stdin,
-      output: process.stdout,
-    })
-
-    logger.warn(
-      `\n\n` +
-        `Before proceeding, review the migration guide at ${underline`https://tsdown.dev/guide/migrate-from-tsup`}, as this process will modify your files.\n` +
-        `Uncommitted changes will be lost. Use the ${green`--dry-run`} flag to preview changes without applying them.`,
-    )
-    const input = await rl.question(bold`Continue? (Y/n) `)
-    rl.close()
-
-    const confirm = input.toLowerCase() === 'y' || input === ''
-    if (!confirm) {
-      logger.error('Migration cancelled.')
-      process.exitCode = 1
-      return
-    }
   }
 
   if (cwd) process.chdir(cwd)
 
-  let migrated = await migratePackageJson(dryRun)
-  if (await migrateTsupConfig(dryRun)) {
-    migrated = true
-  }
-  if (migrated) {
-    logger.success(
-      'Migration completed. Remember to run install command with your package manager.',
-    )
-  } else {
-    logger.error('No migration performed.')
-    process.exitCode = 1
-  }
+  await migratePackageJson(dryRun)
+  await migrateTsupConfig(dryRun)
 }
 
 async function migratePackageJson(dryRun?: boolean): Promise<boolean> {

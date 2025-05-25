@@ -1,5 +1,13 @@
 import process from 'node:process'
-import { intro, outro, spinner } from '@clack/prompts'
+import {
+  cancel,
+  confirm,
+  intro,
+  isCancel,
+  outro,
+  spinner,
+} from '@clack/prompts'
+import { green, underline } from 'ansis'
 import { cac } from 'cac'
 import debug from 'debug'
 import { version } from '../package.json'
@@ -42,11 +50,13 @@ cli
     s.stop('Template cloned')
 
     // End clack prompts
-    outro(`Done! Now run:
-      cd ${resolvedOptions.name}
-      pnpm install
-      pnpm run dev
-    `)
+    outro(
+      `Done! Now run:\n` +
+        `  ${green`cd ${resolvedOptions.name}`}\n` +
+        `  ${green`npm install`}\n` +
+        `  ${green`npm run build`}\n\n` +
+        `For more information, visit: ${underline`https://tsdown.dev/`}`,
+    )
   })
 
 cli
@@ -57,12 +67,30 @@ cli
     // Start clack prompts
     intro(`Starting migration from tsup to tsdown`)
 
+    // Prompt for comfirmation
+    const shouldContinue = await confirm({
+      message:
+        `Before proceeding, review the migration guide at ${underline`https://tsdown.dev/guide/migrate-from-tsup`}, as this process will modify your files.\n` +
+        `Uncommitted changes will be lost. Use the ${green`--dry-run`} flag to preview changes without applying them.`,
+    })
+    if (isCancel(shouldContinue)) {
+      cancel('Migration cancelled.')
+      process.exit(0)
+    }
+    if (!shouldContinue) {
+      outro('Migration cancelled.')
+      process.exit(0)
+    }
+
+    const s = spinner()
+    s.start('Migrating from tsup to tsdown...')
     // Migrate the project
     const { migrate } = await import('./migrate')
     await migrate({
       cwd: args.cwd,
       dryRun: !!args.dryRun,
     })
+    s.stop()
 
     // End clack prompts
     outro(`Migration completed!`)
