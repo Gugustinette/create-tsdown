@@ -24,6 +24,7 @@ export async function resolveOptions(
     resolvedName = (await text({
       message: 'What is the name of your package?',
       placeholder: './my-package',
+      initialValue: './my-package',
     })) as string
   }
 

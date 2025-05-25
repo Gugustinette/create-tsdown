@@ -1,9 +1,7 @@
 import process from 'node:process'
-import { intro, outro } from '@clack/prompts'
-import { dim } from 'ansis'
+import { intro, outro, spinner } from '@clack/prompts'
 import { cac } from 'cac'
 import debug from 'debug'
-import { VERSION as rolldownVersion } from 'rolldown'
 import { version } from '../package.json'
 import { resolveOptions, type Options } from './options'
 import { resolveComma, toArray } from './utils/general'
@@ -35,10 +33,13 @@ cli
     // Resolve the user options
     const resolvedOptions = await resolveOptions(options)
 
+    const s = spinner()
+    s.start('Cloning the template...')
     // Create the project
     const { create } = await import('./index')
     if (input.length > 0) options.name = input[0]
     await create(resolvedOptions)
+    s.stop('Template cloned')
 
     // End clack prompts
     outro(`Done! Now run:
@@ -53,8 +54,18 @@ cli
   .option('-c, --cwd <dir>', 'Working directory')
   .option('-d, --dry-run', 'Dry run')
   .action(async (args) => {
+    // Start clack prompts
+    intro(`Starting migration from tsup to tsdown`)
+
+    // Migrate the project
     const { migrate } = await import('./migrate')
-    await migrate(args)
+    await migrate({
+      cwd: args.cwd,
+      dryRun: !!args.dryRun,
+    })
+
+    // End clack prompts
+    outro(`Migration completed!`)
   })
 
 export async function runCLI(): Promise<void> {
