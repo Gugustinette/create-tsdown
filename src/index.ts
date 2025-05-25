@@ -5,18 +5,16 @@ import type { ResolvedOptions } from './options'
 /**
  * Create a tsdown project.
  */
-export function create(options: ResolvedOptions): void {
+export async function create(options: ResolvedOptions): Promise<void> {
   if (typeof options.silent === 'boolean') {
     logger.setSilent(options.silent)
   }
 
   // Clone the template from the repository
-  downloadTemplate(
+  await downloadTemplate(
     `gh:gugustinette/create-tsdown/templates/${options.template}`,
     {
       dir: options.name,
     },
   )
-
-  logger.success('Project created successfully!')
 }

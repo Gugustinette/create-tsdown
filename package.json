@@ -61,6 +61,7 @@
     }
   },
   "dependencies": {
+    "@clack/prompts": "catalog:prod",
     "ansis": "catalog:prod",
     "cac": "catalog:prod",
     "debug": "catalog:prod",

@@ -1,3 +1,4 @@
+import { select, text } from '@clack/prompts'
 import Debug from 'debug'
 import type { Options, ResolvedOptions } from './types'
 
@@ -10,12 +11,46 @@ const debug = Debug('create-tsdown:options')
  * @param options The user options
  * @returns The resolved options
  */
-export function resolveOptions(options: Options): ResolvedOptions {
+export async function resolveOptions(
+  options: Options,
+): Promise<ResolvedOptions> {
   debug('options %O', options)
 
+  // Resolve the name of the package
+  let resolvedName: string | symbol
+  if (options.name !== undefined) {
+    resolvedName = options.name
+  } else {
+    resolvedName = (await text({
+      message: 'What is the name of your package?',
+      placeholder: './my-package',
+    })) as string
+  }
+
+  // Resolve the template
+  let resolvedTemplate: ResolvedOptions['template']
+  if (options.template !== undefined) {
+    resolvedTemplate = options.template
+    if (!['default', 'vue', 'react'].includes(resolvedTemplate)) {
+      throw new Error(
+        `Invalid template "${resolvedTemplate}". Available templates: default, vue, react`,
+      )
+    }
+  } else {
+    resolvedTemplate = (await select({
+      message: 'Which template do you want to use?',
+      options: [
+        { value: 'default', label: 'Default' },
+        { value: 'vue', label: 'Vue' },
+        { value: 'react', label: 'React' },
+      ],
+      initialValue: 'default',
+    })) as ResolvedOptions['template']
+  }
+
   const resolvedOptions: ResolvedOptions = {
-    name: options.name ?? 'my-package',
-    template: options.template ?? 'default',
+    name: resolvedName,
+    template: resolvedTemplate,
     silent: !!options.silent,
     debug: !!options.debug,
   }

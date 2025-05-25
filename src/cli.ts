@@ -1,4 +1,5 @@
 import process from 'node:process'
+import { intro, outro } from '@clack/prompts'
 import { dim } from 'ansis'
 import { cac } from 'cac'
 import debug from 'debug'
@@ -26,18 +27,25 @@ cli
   .option('--debug', 'Show debug logs')
   .option('--silent', 'Suppress non-error logs')
   .action(async (input: string[], options: Options) => {
+    // Start clack prompts
+    intro(`tsdown - The Elegant Library Bundler`)
+
     logger.setSilent(!!options.silent)
-    logger.info(
-      `create-tsdown ${dim`v${version}`} powered by rolldown ${dim`v${rolldownVersion}`}`,
-    )
 
     // Resolve the user options
-    const resolvedOptions = resolveOptions(options)
+    const resolvedOptions = await resolveOptions(options)
 
-    // Run the command
+    // Create the project
     const { create } = await import('./index')
     if (input.length > 0) options.name = input[0]
-    create(resolvedOptions)
+    await create(resolvedOptions)
+
+    // End clack prompts
+    outro(`Done! Now run:
+      cd ${resolvedOptions.name}
+      pnpm install
+      pnpm run dev
+    `)
   })
 
 cli
