@@ -5,13 +5,13 @@
 ## Usage
 
 ```bash
-npx create-tsdown@latest <project-name>
+npm create tsdown
 ```
 
 ## Migrate from tsup
 
 ```bash
-npx create-tsdown migrate tsup
+npx create-tsdown migrate
 ```
 
 Please make sure to commit your changes before migrating. For more details, see the [Migration Guide](https://tsdown.dev/guide/migrate-from-tsup).
