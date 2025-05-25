@@ -23,6 +23,9 @@ cli
     ignoreOptionDefaultValue: true,
     allowUnknownOptions: true,
   })
+  .option('-n, --name <name>', 'Name of the package to create', {
+    default: './my-package',
+  })
   .option(
     '-t, --template <template>',
     'Available templates: default, vue, react',
