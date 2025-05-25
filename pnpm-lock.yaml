@@ -46,6 +46,9 @@ catalogs:
       specifier: ^3.1.4
       version: 3.1.4
   prod:
+    '@clack/prompts':
+      specifier: ^0.11.0
+      version: 0.11.0
     ansis:
       specifier: ^4.0.0
       version: 4.0.0
@@ -70,7 +73,7 @@ importers:
   .:
     dependencies:
       '@clack/prompts':
-        specifier: ^0.11.0
+        specifier: catalog:prod
         version: 0.11.0
       ansis:
         specifier: catalog:prod
