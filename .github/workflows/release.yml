@@ -19,6 +19,12 @@ jobs:
           fetch-depth: 0
           persist-credentials: true
 
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: 'https://registry.npmjs.org'
+
       - name: Install pnpm
         uses: pnpm/action-setup@v4.1.0
 
@@ -30,9 +36,6 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install
-
-      - name: Build
-        run: pnpm run build
 
       - name: Publish to npm
         run: pnpm publish --access public --no-git-checks
