@@ -19,10 +19,20 @@ jobs:
           fetch-depth: 0
           persist-credentials: true
 
-      - name: Set node
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4.1.0
+
+      - name: Setup node
         uses: actions/setup-node@v4
         with:
           node-version: lts/*
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build
+        run: pnpm run build
 
       - name: Generate changelog
         run: npx changelogithub
@@ -30,7 +40,7 @@ jobs:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
       - name: Publish to npm
-        run: npm publish --access public
+        run: pnpm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
 
