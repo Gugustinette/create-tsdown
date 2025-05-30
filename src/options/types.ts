@@ -13,7 +13,7 @@ export interface Options {
    * The template to use.
    * @default 'default'
    */
-  template?: 'default' | 'vue' | 'react'
+  template?: 'default' | 'minimal' | 'vue' | 'react'
   /** @default false */
   silent?: boolean
   /** @default false */
@@ -32,7 +32,7 @@ export type ResolvedOptions = Overwrite<
      * The template to use.
      * @default 'default'
      */
-    template: 'default' | 'vue' | 'react'
+    template: 'default' | 'minimal' | 'vue' | 'react'
     /** @default false */
     silent: boolean
     /** @default false */
