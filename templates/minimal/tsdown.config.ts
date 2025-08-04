@@ -4,6 +4,6 @@ export default defineConfig({
   entry: ['./src/index.ts'],
   platform: 'neutral',
   dts: {
-    isolatedDeclarations: true,
+    oxc: true,
   },
 })
