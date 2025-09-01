@@ -1,0 +1,14 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "tsBuildInfoFile": "dist/.tsbuildinfo",
+    "emitDeclarationOnly": true
+  },
+  "include": [
+    "src/**/*",
+    "tests/**/*",
+    "*.config.ts"
+  ],
+  "references": []
+}
