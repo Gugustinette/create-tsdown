@@ -1,0 +1,46 @@
+{
+  "name": "@tsdown-starter/core",
+  "version": "0.0.0",
+  "description": "A starter for creating a TypeScript package.",
+  "type": "module",
+  "license": "MIT",
+  "homepage": "https://github.com/author/library#readme",
+  "bugs": {
+    "url": "https://github.com/author/library/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/author/library.git"
+  },
+  "author": "Author Name <author.name@mail.com>",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js",
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown --watch",
+    "test": "vitest",
+    "typecheck": "tsc --noEmit",
+    "release": "bumpp && npm publish",
+    "lint": "eslint ."
+  },
+  "devDependencies": {
+    "@microsoft/api-documenter": "^7.26.32",
+    "@microsoft/api-extractor": "^7.52.11",
+    "@types/node": "^24.3.0",
+    "bumpp": "^10.1.0",
+    "tsdown": "^0.11.9",
+    "typescript": "^5.9.2",
+    "vitest": "3.2.4"
+  }
+}

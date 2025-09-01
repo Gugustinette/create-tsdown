@@ -22,9 +22,27 @@ catalogs:
     diff: ^8.0.1
     giget: ^2.0.0
     rolldown: 1.0.0-beta.9-commit.51df2b7
+  conflicts_dev_h24_3_0:
+    '@types/node': ^24.3.0
+  conflicts_dev_h9_34_0:
+    eslint: ^9.34.0
+  conflicts_dev_h3_6_2:
+    prettier: ^3.6.2
+  conflicts_dev_h5_9_2:
+    typescript: ^5.9.2
+  conflicts_dev_4_0_0mbeta_9:
+    vitest: 4.0.0-beta.9
 ignoredBuiltDependencies:
   - rolldown
   - unrs-resolver
 
 onlyBuiltDependencies:
   - esbuild
+catalog:
+  '@eslint/js': ^9.34.0
+  '@vitest/browser': 4.0.0-beta.9
+  '@vitest/coverage-v8': 4.0.0-beta.9
+  '@vitest/ui': 4.0.0-beta.9
+  lerna: ^8.2.3
+  syncpack: 14.0.0-alpha.19
+  typescript-eslint: ^8.41.0

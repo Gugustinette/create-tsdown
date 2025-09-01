@@ -1,0 +1,23 @@
+{
+  "name": "tsdown-starter",
+  "private": true,
+  "devDependencies": {
+    "@eslint/js": "^9.34.0",
+    "@types/node": "^24.3.0",
+    "eslint": "^9.34.0",
+    "lerna": "^8.2.3",
+    "prettier": "^3.6.2",
+    "syncpack": "14.0.0-alpha.19",
+    "typescript": "^5.9.2",
+    "typescript-eslint": "^8.41.0",
+    "vitest": "3.2.4"
+  },
+  "scripts": {
+    "build": "pnpm lerna run build",
+    "dev": "pnpm lerna run dev",
+    "format": "prettier --write packages/*/{src,tests}/**/*.ts packages/*/vitest.config.ts packages/*/tsdown.config.ts packages/ui/playground/vite.config.ts",
+    "lint": "pnpm lerna run lint",
+    "test": "pnpm lerna run test",
+    "typecheck": "pnpm lerna run typecheck"
+  }
+}
