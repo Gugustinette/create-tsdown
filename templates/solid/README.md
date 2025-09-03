@@ -1,6 +1,6 @@
-# react-components-starter
+# solid-components-starter
 
-A starter for creating a React component library.
+A starter for creating a Solid component library.
 
 ## Development
 

@@ -5,7 +5,6 @@ import { MyButton } from '../src'
 test('button', () => {
   render(() => <MyButton type="primary" />)
 
-  // biome-ignore lint/performance/useTopLevelRegex: <explanation>
   const buttonElement = screen.getByText(/my button: type primary/i)
 
   expect(buttonElement.outerHTML).toMatchInlineSnapshot(

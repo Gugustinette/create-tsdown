@@ -38,9 +38,13 @@ export async function resolveOptions(
   let resolvedTemplate: ResolvedOptions['template']
   if (options.template !== undefined) {
     resolvedTemplate = options.template
-    if (!['default', 'minimal', 'vue', 'react'].includes(resolvedTemplate)) {
+    if (
+      !['default', 'minimal', 'vue', 'react', 'solid'].includes(
+        resolvedTemplate,
+      )
+    ) {
       throw new Error(
-        `Invalid template "${resolvedTemplate}". Available templates: default, vue, react`,
+        `Invalid template "${resolvedTemplate}". Available templates: default, vue, react, solid`,
       )
     }
   } else {
@@ -51,6 +55,7 @@ export async function resolveOptions(
         { value: 'minimal', label: 'Minimal' },
         { value: 'vue', label: 'Vue' },
         { value: 'react', label: 'React' },
+        { value: 'solid', label: 'Solid' },
       ],
       initialValue: 'default',
     })) as ResolvedOptions['template']
