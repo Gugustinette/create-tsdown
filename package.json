@@ -5,13 +5,13 @@
   "description": "The Elegant Bundler for Libraries",
   "type": "module",
   "license": "MIT",
-  "homepage": "https://github.com/gugustinette/create-tsdown#readme",
+  "homepage": "https://github.com/Gugustinette/create-tsdown#readme",
   "bugs": {
-    "url": "https://github.com/gugustinette/create-tsdown/issues"
+    "url": "https://github.com/Gugustinette/create-tsdown/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gugustinette/create-tsdown.git"
+    "url": "git+https://github.com/Gugustinette/create-tsdown.git"
   },
   "author": "三咲智子 Kevin Deng <sxzz@sxzz.moe>",
   "funding": "https://github.com/sponsors/sxzz",
