@@ -1,0 +1,55 @@
+{
+  "name": "solid-components-starter",
+  "version": "0.0.0",
+  "description": "A starter for creating a SolidJS component library.",
+  "type": "module",
+  "license": "MIT",
+  "homepage": "https://github.com/author/library#readme",
+  "bugs": {
+    "url": "https://github.com/author/library/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/author/library.git"
+  },
+  "author": "Author Name <author.name@mail.com>",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "solid": "./dist/index.jsx",
+      "default": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown --watch",
+    "playground": "vite --config playground/vite.config.ts",
+    "test": "vitest",
+    "typecheck": "tsc --noEmit",
+    "release": "bumpp && pnpm publish",
+    "prepublishOnly": "pnpm run build"
+  },
+  "devDependencies": {
+    "@solidjs/testing-library": "^0.8.10",
+    "@types/node": "^22.15.17",
+    "bumpp": "^10.1.0",
+    "happy-dom": "^17.4.6",
+    "rolldown-plugin-solid": "^0.2.1",
+    "solid-js": "^1.9.8",
+    "tsdown": "^0.11.1",
+    "typescript": "^5.8.3",
+    "vite-plugin-solid": "^2.11.8",
+    "vite": "npm:rolldown-vite@latest",
+    "vitest": "^3.1.3"
+  }
+}

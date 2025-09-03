@@ -28,7 +28,7 @@ cli
   })
   .option(
     '-t, --template <template>',
-    'Available templates: default, vue, react',
+    'Available templates: default, vue, react, solid',
     {
       default: 'default',
     },
