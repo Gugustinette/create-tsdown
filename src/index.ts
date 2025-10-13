@@ -1,5 +1,6 @@
 import { downloadTemplate } from 'giget'
 import { logger } from './utils/logger'
+import { updatePackageName } from './utils/update-package-name'
 import type { ResolvedOptions } from './options'
 
 /**
@@ -17,4 +18,7 @@ export async function create(options: ResolvedOptions): Promise<void> {
       dir: options.name,
     },
   )
+
+  // Update the package name in package.json
+  await updatePackageName(options.name)
 }
