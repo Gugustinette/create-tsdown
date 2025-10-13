@@ -14,6 +14,7 @@ import { version } from '../package.json'
 import { resolveOptions, type Options } from './options'
 import { resolveComma, toArray } from './utils/general'
 import { logger } from './utils/logger'
+import { getBuildCommand, getInstallCommand } from './utils/package-manager'
 
 const cli = cac('create-tsdown')
 cli.help().version(version)
@@ -56,8 +57,8 @@ cli
     outro(
       `Done! Now run:\n` +
         `  ${green`cd ${resolvedOptions.name}`}\n` +
-        `  ${green`npm install`}\n` +
-        `  ${green`npm run build`}\n\n` +
+        `  ${green(String(getInstallCommand()))}\n` +
+        `  ${green(String(getBuildCommand()))}\n\n` +
         `For more information, visit: ${underline`https://tsdown.dev/`}`,
     )
   })
