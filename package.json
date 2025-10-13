@@ -62,28 +62,28 @@
     }
   },
   "dependencies": {
-    "@clack/prompts": "catalog:prod",
-    "ansis": "catalog:prod",
-    "cac": "catalog:prod",
-    "debug": "catalog:prod",
-    "diff": "catalog:prod",
-    "giget": "catalog:prod",
-    "rolldown": "catalog:prod"
+    "@clack/prompts": "^0.11.0",
+    "ansis": "^4.2.0",
+    "cac": "^6.7.14",
+    "debug": "^4.4.3",
+    "diff": "^8.0.2",
+    "giget": "^2.0.0",
+    "rolldown": "1.0.0-beta.43"
   },
   "devDependencies": {
-    "@oxc-node/core": "catalog:dev",
-    "@sxzz/eslint-config": "catalog:dev",
-    "@sxzz/prettier-config": "catalog:dev",
-    "@sxzz/test-utils": "catalog:dev",
-    "@types/debug": "catalog:dev",
-    "@types/node": "catalog:dev",
-    "bumpp": "catalog:dev",
-    "eslint": "catalog:dev",
-    "prettier": "catalog:dev",
-    "tsdown": "catalog:dev",
-    "typescript": "catalog:dev",
-    "unplugin-unused": "catalog:dev",
-    "vitest": "catalog:dev"
+    "@oxc-node/core": "^0.0.32",
+    "@sxzz/eslint-config": "^7.2.7",
+    "@sxzz/prettier-config": "^2.2.4",
+    "@sxzz/test-utils": "^0.5.11",
+    "@types/debug": "^4.1.12",
+    "@types/node": "^24.7.2",
+    "bumpp": "^10.3.1",
+    "eslint": "^9.37.0",
+    "prettier": "^3.6.2",
+    "tsdown": "^0.15.6",
+    "typescript": "^5.9.3",
+    "unplugin-unused": "^0.5.4",
+    "vitest": "^3.2.4"
   },
   "engines": {
     "node": ">=18.0.0"

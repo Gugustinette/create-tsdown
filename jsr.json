@@ -8,8 +8,7 @@
       "package.json",
       "jsr.json",
       "README.md",
-      "LICENSE",
-      "esm-shims.js"
+      "LICENSE"
     ]
   }
 }

@@ -6,5 +6,8 @@ export default sxzz(
   },
   {
     ignores: ['templates'],
+    rules: {
+      'pnpm/json-enforce-catalog': 'off',
+    },
   },
 )
