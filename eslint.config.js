@@ -5,7 +5,9 @@ export default sxzz(
     pnpm: true,
   },
   {
-    ignores: ['templates'],
+    ignores: ['templates/**'],
+  },
+  {
     rules: {
       'pnpm/json-enforce-catalog': 'off',
     },

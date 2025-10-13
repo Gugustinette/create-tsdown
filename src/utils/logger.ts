@@ -73,7 +73,7 @@ export function generateColor(name: string = 'default'): Ansis {
   } else {
     let hash = 0
     for (let i = 0; i < name.length; i++)
-      hash = name.charCodeAt(i) + ((hash << 5) - hash)
+      hash = (name.codePointAt(i) ?? 0) + ((hash << 5) - hash)
     const hue = hash % 360
     const saturation = 35
     const lightness = 55

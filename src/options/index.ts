@@ -18,14 +18,14 @@ export async function resolveOptions(
 
   // Resolve the name of the package
   let resolvedName: string | symbol
-  if (options.name !== undefined) {
-    resolvedName = options.name
-  } else {
+  if (options.name === undefined) {
     resolvedName = (await text({
       message: 'What is the name of your package?',
       placeholder: './my-package',
       initialValue: './my-package',
     })) as string
+  } else {
+    resolvedName = options.name
   }
   // Handle cancel
   if (isCancel(resolvedName)) {
@@ -36,18 +36,7 @@ export async function resolveOptions(
 
   // Resolve the template
   let resolvedTemplate: ResolvedOptions['template']
-  if (options.template !== undefined) {
-    resolvedTemplate = options.template
-    if (
-      !['default', 'minimal', 'vue', 'react', 'solid'].includes(
-        resolvedTemplate,
-      )
-    ) {
-      throw new Error(
-        `Invalid template "${resolvedTemplate}". Available templates: default, vue, react, solid`,
-      )
-    }
-  } else {
+  if (options.template === undefined) {
     resolvedTemplate = (await select({
       message: 'Which template do you want to use?',
       options: [
@@ -59,6 +48,17 @@ export async function resolveOptions(
       ],
       initialValue: 'default',
     })) as ResolvedOptions['template']
+  } else {
+    resolvedTemplate = options.template
+    if (
+      !['default', 'minimal', 'vue', 'react', 'solid'].includes(
+        resolvedTemplate,
+      )
+    ) {
+      throw new Error(
+        `Invalid template "${resolvedTemplate}". Available templates: default, vue, react, solid`,
+      )
+    }
   }
   // Handle cancel
   if (isCancel(resolvedTemplate)) {

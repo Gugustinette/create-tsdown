@@ -43,8 +43,7 @@ export function getPackageManagerCommands(): {
         install: 'deno install',
         build: 'deno task build',
       }
-    case 'npm':
-    default:
+    default: // npm
       return {
         install: 'npm i',
         build: 'npm run build',
