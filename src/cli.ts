@@ -14,7 +14,7 @@ import { version } from '../package.json'
 import { resolveOptions, type Options } from './options'
 import { resolveComma, toArray } from './utils/general'
 import { logger } from './utils/logger'
-import { getBuildCommand, getInstallCommand } from './utils/package-manager'
+import { getPackageManagerCommands } from './utils/package-manager'
 
 const cli = cac('create-tsdown')
 cli.help().version(version)
@@ -53,12 +53,16 @@ cli
     await create(resolvedOptions)
     s.stop('Template cloned')
 
+    // Get package manager commands
+    const { install: installCommand, build: buildCommand } =
+      getPackageManagerCommands()
+
     // End clack prompts
     outro(
       `Done! Now run:\n` +
         `  ${green`cd ${resolvedOptions.name}`}\n` +
-        `  ${green(String(getInstallCommand()))}\n` +
-        `  ${green(String(getBuildCommand()))}\n\n` +
+        `  ${green(String(installCommand))}\n` +
+        `  ${green(String(buildCommand))}\n\n` +
         `For more information, visit: ${underline`https://tsdown.dev/`}`,
     )
   })
