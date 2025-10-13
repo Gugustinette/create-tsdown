@@ -5,7 +5,7 @@ export default sxzz(
     pnpm: true,
   },
   {
-    ignores: ['templates/**'],
+    ignores: ['templates/**', '.github/**'],
   },
   {
     rules: {
